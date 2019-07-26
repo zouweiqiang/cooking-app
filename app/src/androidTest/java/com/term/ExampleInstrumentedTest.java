@@ -1,4 +1,4 @@
-package com.nd.frt.cookingapp;
+package com.term;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.nd.frt.cookingapp", appContext.getPackageName());
+        assertEquals("com.term", appContext.getPackageName());
     }
 }

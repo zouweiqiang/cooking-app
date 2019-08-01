@@ -1,27 +1,29 @@
 package com.term;
 
-import android.animation.Animator;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawer;//根布局
     private Toolbar toolbar;//标题操作栏
     private NavigationView navigationView;//侧边栏
-    private ImageView topImg, bottomImg, userImg, praiseImg, messageImg;
-    private TextView title, subTitle, content, praiseNum, messageNum, userName;
+    private RecyclerView recycler;
+    private MAdapter adapter;
+    private List<ItemBean> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,17 +38,7 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
-        topImg = findViewById(R.id.item_img);
-        bottomImg = findViewById(R.id.bottom_img);
-        userImg = findViewById(R.id.user_img);
-        title = findViewById(R.id.item_title);
-        subTitle = findViewById(R.id.item_sub_title);
-        content = findViewById(R.id.item_content);
-        praiseNum = findViewById(R.id.praise_num);
-        messageNum = findViewById(R.id.message_num);
-        userName = findViewById(R.id.user_name);
-        praiseImg = findViewById(R.id.message_praise);
-        messageImg = findViewById(R.id.message_img);
+        recycler = findViewById(R.id.recycler);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -54,40 +46,23 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
-        praiseImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                AnimationUtil.AlphaScaleAnimator(v, new AnimatorListener() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        v.animate().alpha(1).scaleX(1).scaleY(1);
-                    }
-                });
-            }
-        });
-        messageImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                AnimationUtil.AlphaScaleAnimator(v, new AnimatorListener() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        v.animate().alpha(1).scaleX(1).scaleY(1);
-                    }
-                });
-            }
-        });
+        list = new ArrayList<>();
+        adapter = new MAdapter(list, this);
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        recycler.setLayoutManager(manager);
+        recycler.setAdapter(adapter);
     }
 
     private void initDate() {
-        topImg.setBackgroundResource(R.mipmap.coffee_top);
-        bottomImg.setBackgroundResource(R.mipmap.chocolate_icon);
-        userImg.setBackgroundResource(R.mipmap.head_icon);
-        title.setText("Nam dapibus nisl vitae");
-        subTitle.setText("Breakfase");
-        content.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Utpretium pretium tempor. Ut eget imperdiet neque. In vo.");
-        userName.setText("Alexandra Jones");
-        praiseNum.setText("16");
-        messageNum.setText("3");
+        ItemBean itemBean = new ItemBean();
+        itemBean.setTitle("Nam dapibus nisl vitae");
+        itemBean.setSubTitle("Breakfase");
+        itemBean.setContent("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Utpretium pretium tempor. Ut eget imperdiet neque. In vo.");
+        itemBean.setUserName("Alexandra Jones");
+        itemBean.setPraiseNum("16");
+        itemBean.setMessageNum("3");
+        list.add(itemBean);
+        adapter.notifyDataSetChanged();
     }
 
     @Override

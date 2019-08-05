@@ -1,4 +1,4 @@
-package com.term;
+package com.example.administrator.bsdemo04;
 
 import org.junit.Test;
 

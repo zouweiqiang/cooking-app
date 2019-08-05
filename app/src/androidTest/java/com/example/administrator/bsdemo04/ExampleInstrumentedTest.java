@@ -1,4 +1,4 @@
-package com.term;
+package com.example.administrator.bsdemo04;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.term", appContext.getPackageName());
+        assertEquals("com.example.administrator.bsdemo04", appContext.getPackageName());
     }
 }

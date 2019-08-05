@@ -1,19 +1,39 @@
-<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/action_search"
-        android:icon="@drawable/ic_menu_search"
-        android:title="搜索"
-        app:showAsAction="ifRoom" />
+
 
     <item
-        android:id="@+id/action_item1"
-        android:title="one"
-        app:showAsAction="never" />
+    android:id="@+id/menu_search"
+    android:icon="@android:drawable/ic_menu_search"
+    android:title="aa"
+    app:actionViewClass="android.widget.SearchView"
+    app:showAsAction="ifRoom|collapseActionView" />
 
     <item
-        android:id="@+id/action_item2"
-        android:title="two"
-        app:showAsAction="never" />
+        android:id="@+id/more"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:title="item0">
+    </item>
+    <item
+        android:id="@+id/mc"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:title="item1">
+    </item>
+    <!--<menu>-->
+    <!--<item-->
+    <!--android:id="@+id/name"-->
+    <!--app:showAsAction="always"-->
+    <!--android:title="学长"/>-->
+    <!--<item-->
+    <!--android:id="@id/name"-->
+    <!--app:showAsAction="always"-->
+    <!--android:title="学姐"/>-->
+    <!--<item-->
+    <!--android:id="@id/name"-->
+    <!--app:showAsAction="always"-->
+    <!--android:title="学弟"/>-->
+    <!--</menu>-->
+
 </menu>
